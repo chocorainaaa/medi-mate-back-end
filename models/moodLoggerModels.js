@@ -15,5 +15,8 @@ export async function updateMoodLogger(req) {
     RETURNING *;`,
     [dbUserId, moodRating]
   );
+  if (result.rows.length === 0) {
+    return `Failed to log mood`;
+  }
   return result.rows;
 }

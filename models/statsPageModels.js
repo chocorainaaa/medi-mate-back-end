@@ -2,7 +2,6 @@ import { query } from "../db/index.js";
 
 //************** Get all stats **********/
 export async function getTotalVisits(userId) {
-  // console.log("hello");
   const result = await query(
     `SELECT total_visits FROM users
     WHERE firebase_user_id = $1;`,
@@ -82,18 +81,3 @@ export async function getStreak(userId) {
   const streak = Number(result.rows[0].streak_days);
   return streak;
 }
-
-// export async function getPetAge(userId) {
-//   console.log(userId);
-//   const dateOfBirth = await query(
-//     `SELECT pet_birth_date
-//     FROM pets AS p
-//     LEFT JOIN users AS u
-//     ON u.user_id = p.user_id
-//     WHERE u.firebase_user_id = $1;`,
-//     [userId]
-//   );
-//   const age = dateOfBirth.rows[0].pet_birth_date;
-//   console.log(age);
-//   console.log(typeof age);
-// }

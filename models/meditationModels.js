@@ -21,6 +21,8 @@ export async function postMeditatedTime(req) {
     `,
     [petId, dbUserId, meditationLength, streakDays]
   );
-
+  if (result.rows.length === 0) {
+    return `Failed to update meditation log`;
+  }
   return results.rows;
 }

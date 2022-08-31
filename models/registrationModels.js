@@ -13,6 +13,9 @@ export async function createUserEntry(req) {
         RETURNING *;`,
     [username, firebaseUserId]
   );
+  if (result.rows.length === 0) {
+    return `Failed to create user entry`;
+  }
   return result.rows;
 }
 
@@ -29,6 +32,9 @@ export async function populateDefaultMoodLog(req) {
     RETURNING *;`,
     [userId]
   );
+  if (result.rows.length === 0) {
+    return `Failed to populate default mood log`;
+  }
   return result.rows;
 }
 
@@ -44,5 +50,8 @@ export async function createDefaultPetEntry(req) {
         RETURNING *; `,
     [userId]
   );
+  if (result.rows.length === 0) {
+    return `Failed to populate default pet entry`;
+  }
   return result.rows;
 }

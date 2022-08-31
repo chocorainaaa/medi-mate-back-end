@@ -7,6 +7,9 @@ export async function getUserId(firebaseUserId) {
     [firebaseUserId]
   );
   const dbUserId = result.rows[0].user_id;
+  if (result.rows.length === 0) {
+    return null;
+  }
   return dbUserId;
 }
 
@@ -20,6 +23,9 @@ export async function getPetId(firebaseUserId) {
     [firebaseUserId]
   );
   const petId = result.rows[0].pet_id;
+  if (result.rows.length === 0) {
+    return null;
+  }
   return petId;
 }
 

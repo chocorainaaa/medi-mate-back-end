@@ -22,6 +22,9 @@ export async function createPetEntry(req) {
         RETURNING *; `,
     [petName, userId]
   );
+  if (result.rows.length === 0) {
+    return `Failed to log pet details`;
+  }
   return result.rows;
 }
 
@@ -38,5 +41,8 @@ export async function populateDefaultMeditationLog(req) {
     RETURNING *;`,
     [petId, userId]
   );
+  if (result.rows.length === 0) {
+    return `Failed to log meditation details`;
+  }
   return result.rows;
 }
